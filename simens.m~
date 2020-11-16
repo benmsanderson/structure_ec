@@ -1,0 +1,41 @@
+simens_1=randn(1000,5)+3.5;
+simens_2=randn(1000,5)+3.5;
+
+pd=makedist('Lognormal','mu',log(3),'sigma',.35);
+randsens=random(pd,1000,1);
+randlambda=3.5./randsens;
+
+for i=1:1000
+  lmfac=randlambda(i)./sum(simens_1(i,:).^-1,2);
+  simlm1(i,:)=simens_1(i,:)./lmfac;
+  lmfac=randlambda(i)./sum(simens_2(i,:).^-1,2);
+  simlm2(i,:)=simens_2(i,:)./lmfac;  
+end
+
+v_1=rand(5,1)
+v_1=v_1/norm(v_1);
+v_2=rand(5,1)
+v_2=v_2/norm(v_2);
+
+figure(1)
+clf
+for i=1:5
+  for j=1:i
+    subplot(5,5,5*(i-1)+j)
+    simtmp_1=repmat(mean(simlm1,1),1000,1);
+    simtmp_1(:,1:i)=simlm1(:,1:i);
+
+    simtmp_2=repmat(mean(simlm2,1),1000,1);
+    simtmp_2(:,1:j)=simlm2(:,1:j);
+
+    simec=simtmp_1*v_1;
+    simfdb=simtmp_1*v_2;
+    actec=simtmp_2*v_1;
+    actfdb=simtmp_2*v_2;
+    plot(actec,actfdb,'k.')
+    
+ hold on
+ plot(simec,simfdb,'r.')
+
+  end
+end

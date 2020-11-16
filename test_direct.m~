@@ -1,0 +1,51 @@
+[duf tmp]=xlsread('ECs.xlsx');
+
+obs=duf([2,1],1:end);
+cnsrt=tmp(1,3:end);
+
+
+mdlname=tmp(6:end,1);
+
+ec_spin=duf(4:end,2:end);
+mdlsens=duf(4:end,1);
+
+
+%%Create 50 simulated EC sets
+
+for i=1:50
+ec_guess(:,:,i)=predsens(ec_spin);
+end
+
+ec_bg=mean(ec_guess(:,:,:),3);
+
+ec_mu=mean(ec_bg);
+ec_std=std(ec_bg);
+
+ec_in=(ec_bg-repmat(ec_mu,size(ec_bg,1),1))./repmat(ec_std,size(ec_bg,1),1);
+
+[u s v]=svds(ec_in(:,2:end),10);
+
+
+
+
+
+obsm=mean(obs,1);
+predsens(ec_spin)
+
+for i=1:50
+    i
+obsr=obsm+randn(size(obsm)).*range(obs);
+[~,sens_out(i)]=predsens(ec_spin,obsr);
+end
+
+
+for i=1:numel(mdlname)
+    i
+    for j=1:50
+        j
+testr=ec_spin(i,:);
+testr(1)=NaN;
+tset=find([1:numel(mdlname)]~=i);
+[~,sens_test(i,j)]=predsens(ec_spin(tset,:),testr);
+end
+end

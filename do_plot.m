@@ -46,7 +46,9 @@ r=rectangle('position',[prp(1),0,prp(2)-prp(1),25],'edgecolor','none','facecolor
 hold on
 plot([mno,mno],[0,25],'-','color',[0.5,0.5,0.5])
 p1=plot(tt1(:,70),tt1(:,140),'.','markersize',10,'color',[0.9,0.3,0.3])
-
+ t=text(0.05,7.5,['R^2=',num2str(corr(tt1(:,70),tt1(:,140)).^2,'%0.2f')])
+ set(t,'color',[0.9,0.3,0.3])
+ 
 nmb=bootstrp(1000,@regress,tt1(:,280),[tt1(:,70),ones(n_m,1)])';
 vr=std(tt1(:,140)-[tt1(:,70),ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
@@ -66,7 +68,9 @@ for kk=1:1000
 end
 
 p2=plot(tt(:,70),tt(:,140),'.','markersize',10,'color',[0.3,0.3,0.9])
-
+ t=text(0.05,6.5,['R^2=',num2str(corr(tt(:,70),tt(:,140)).^2,'%0.2f')])
+ set(t,'color',[0.3,0.3,0.9])
+ 
 nmb=bootstrp(1000,@regress,tt(:,140),[tt(:,70),ones(n_m,1)])';
 vr=std(tt(:,140)-[tt(:,70),ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
@@ -108,6 +112,8 @@ r=rectangle('position',[prp(1),0,prp(2)-prp(1),25],'edgecolor','none','facecolor
 hold on
 plot([mno,mno],[0,25],'-','color',[0.5,0.5,0.5])
 p1=plot(tt1(:,70),tt1(:,end),'.','markersize',10,'color',[0.9,0.3,0.3])
+ t=text(0.05,7.5,['R^2=',num2str(corr(tt1(:,70),tt1(:,end)).^2,'%0.2f')])
+ set(t,'color',[0.9,0.3,0.3])
 
 nmb=bootstrp(1000,@regress,tt1(:,280),[tt1(:,70),ones(n_m,1)])';
 vr=std(tt1(:,end)-[tt1(:,70),ones(n_m,1)]*mean(nmb,2));
@@ -128,7 +134,9 @@ for kk=1:1000
 end
 
 p2=plot(tt(:,70),tt(:,end),'.','markersize',10,'color',[0.3,0.3,0.9])
-
+ t=text(0.05,6.5,['R^2=',num2str(corr(tt(:,70),tt(:,end)).^2,'%0.2f')])
+ set(t,'color',[0.3,0.3,0.9])
+ 
 nmb=bootstrp(1000,@regress,tt(:,end),[tt(:,70),ones(n_m,1)])';
 vr=std(tt(:,end)-[tt(:,70),ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
@@ -173,7 +181,9 @@ r=rectangle('position',[prp(1),0,prp(2)-prp(1),8],'edgecolor','none','facecolor'
 hold on
 plot([mno,mno],[0,8],'-','color',[0.5,0.5,0.5])
 p1=plot(prd,tt1(:,140),'.','markersize',10,'color',[0.9,0.3,0.3])
-
+ t=text(0.05,7.5,['R^2=',num2str(corr(prd,tt1(:,140)).^2,'%0.2f')])
+ set(t,'color',[0.9,0.3,0.3])
+ 
 nmb=bootstrp(1000,@regress,tt1(:,140),[prd,ones(n_m,1)])';
 vr=std(tt1(:,140)-[prd,ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
@@ -190,7 +200,9 @@ prd=ag(:,1);%+randn(n_m,1)/3;
 
 
 p2=plot(prd,tt(:,140),'.','markersize',10,'color',[0.3,0.3,0.9])
-
+ t=text(0.05,6.5,['R^2=',num2str(corr(prd,tt(:,140)).^2,'%0.2f')])
+ set(t,'color',[0.3,0.3,0.9])
+ 
 nmb=bootstrp(1000,@regress,tt(:,140),[prd,ones(n_m,1)])';
 vr=std(tt(:,140)-[prd,ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
@@ -235,6 +247,9 @@ hold on
 plot([mno,mno],[0,8],'-','color',[0.5,0.5,0.5])
 p1=plot(prd,tt1(:,end),'.','markersize',10,'color',[0.9,0.3,0.3])
 
+ t=text(0.05,7.5,['R^2=',num2str(corr(prd,tt1(:,end)).^2,'%0.2f')])
+ set(t,'color',[0.9,0.3,0.3])
+ 
 nmb=bootstrp(1000,@regress,tt1(:,end),[prd,ones(n_m,1)])';
 vr=std(tt1(:,end)-[prd,ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
@@ -251,6 +266,9 @@ prd=ag(:,1);%+randn(n_m,1)/3;
 
 
 p2=plot(prd,tt(:,end),'.','markersize',10,'color',[0.3,0.3,0.9])
+
+ t=text(0.05,6.5,['R^2=',num2str(corr(prd,tt(:,end)).^2,'%0.2f')])
+ set(t,'color',[0.3,0.3,0.9])
 
 nmb=bootstrp(1000,@regress,tt(:,end),[prd,ones(n_m,1)])';
 vr=std(tt(:,end)-[prd,ones(n_m,1)]*mean(nmb,2));
@@ -293,7 +311,9 @@ r=rectangle('position',[prp(1),0,prp(2)-prp(1),10],'edgecolor','none','facecolor
 hold on
 plot([mno,mno],[0,10],'-','color',[0.5,0.5,0.5])
 p1=plot(ec_cox1,tt1(:,140),'.','markersize',10,'color',[0.9,0.3,0.3])
-
+ t=text(0.05,9.5,['R^2=',num2str(corr(ec_cox1',tt1(:,140)).^2,'%0.2f')])
+ set(t,'color',[0.9,0.3,0.3])
+ 
 nmb=bootstrp(1000,@regress,tt1(:,140),[ec_cox1',ones(n_m,1)])';
 vr=std(tt1(:,140)-[ec_cox1',ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
@@ -308,7 +328,9 @@ for kk=1:1000
 end
 
 p2=plot(ec_cox,tt(:,140),'.','markersize',10,'color',[0.3,0.3,0.9])
-
+ t=text(0.05,8.5,['R^2=',num2str(corr(ec_cox',tt(:,140)).^2,'%0.2f')])
+ set(t,'color',[0.3,0.3,0.9])
+ 
 nmb=bootstrp(1000,@regress,tt(:,140),[ec_cox',ones(n_m,1)])';
 vr=std(tt(:,140)-[ec_cox',ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
@@ -354,7 +376,9 @@ r=rectangle('position',[prp(1),0,prp(2)-prp(1),10],'edgecolor','none','facecolor
 hold on
 plot([mno,mno],[0,10],'-','color',[0.5,0.5,0.5])
 p1=plot(ec_cox1,tt1(:,end),'.','markersize',10,'color',[0.9,0.3,0.3])
-
+ t=text(0.05,9.5,['R^2=',num2str(corr(ec_cox1',tt1(:,end)).^2,'%0.2f')])
+ set(t,'color',[0.9,0.3,0.3])
+ 
 nmb=bootstrp(1000,@regress,tt1(:,end),[ec_cox1',ones(n_m,1)])';
 vr=std(tt1(:,end)-[ec_cox1',ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
@@ -370,6 +394,9 @@ end
 
 p2=plot(ec_cox,tt(:,end),'.','markersize',10,'color',[0.3,0.3,0.9])
 
+ t=text(0.05,8.5,['R^2=',num2str(corr(ec_cox',tt(:,end)).^2,'%0.2f')])
+ set(t,'color',[0.3,0.3,0.9])
+ 
 nmb=bootstrp(1000,@regress,tt(:,end),[ec_cox',ones(n_m,1)])';
 vr=std(tt(:,end)-[ec_cox',ones(n_m,1)]*mean(nmb,2));
 nm2=randn(1000,1)*vr;
